@@ -1,1 +1,83 @@
-<p>login works!</p>
+<div class="container py-5 d-flex justify-content-center">
+    <div class="col-12 col-sm-10 col-md-7 col-lg-5">
+  
+      <div class="card shadow-sm p-4">
+        <h3 class="fw-bold mb-2 text-center">Welcome back</h3>
+        <p class="text-muted text-center mb-4">Sign in to continue to Easy Shopping</p>
+  
+        <form (submit)="onLoginUIOnly()">
+  
+          <!-- Email -->
+          <div class="mb-3">
+            <label class="form-label fw-medium" for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              class="form-control"
+              placeholder="you@example.com"
+              required
+              [(ngModel)]="form.email"
+              name="email"
+              aria-describedby="emailHelp"
+            />
+            <div class="form-text text-danger mt-1" *ngIf="form.email && !isEmailValid()">
+              Please enter a valid email address.
+            </div>
+          </div>
+  
+          <!-- Password with show/hide -->
+          <div class="mb-3">
+            <label class="form-label fw-medium" for="password">Password</label>
+  
+            <div class="input-group">
+              <input
+                id="password"
+                [type]="showPassword ? 'text' : 'password'"
+                class="form-control"
+                placeholder="Enter your password"
+                required
+                [(ngModel)]="form.password"
+                name="password"
+              />
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                aria-pressed="{{ showPassword }}"
+                [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
+                (click)="toggleShowPassword()"
+              >
+                <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+              </button>
+            </div>
+          </div>
+  
+          <!-- Remember me & forgot -->
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="remember" [(ngModel)]="form.remember" name="remember">
+              <label class="form-check-label small" for="remember">Remember me</label>
+            </div>
+  
+            <a routerLink="/forgot-password" class="small">Forgot password?</a>
+          </div>
+  
+          <!-- Submit -->
+          <button
+            type="submit"
+            class="btn btn-primary w-100 fw-semibold"
+            [disabled]="!isFormValid()"
+          >
+            Sign In
+          </button>
+  
+        </form>
+  
+        <div class="text-center mt-4">
+          <span class="text-muted">Don't have an account?</span>
+          <a routerLink="/register" class="fw-semibold">Register</a>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  

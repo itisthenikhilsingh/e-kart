@@ -1,0 +1,60 @@
+<!-- Container uses Bootstrap responsive spacing -->
+<section class="landing-hero bg-gradient  py-5">
+    <div class="container">
+      <div class="row align-items-center gy-4">
+        <!-- Left: Text -->
+        <div class="col-12 col-lg-6">
+          <div class="hero-copy pe-lg-4">
+            <h1 class="display-5 fw-bold" id="hero-heading">{{ headline }}</h1>
+            <p class="lead mb-4" id="hero-subheading">{{ subheadline }}</p>
+  
+            <div class="d-flex gap-2 flex-wrap">
+              <button
+                class="btn btn-lg btn-primary shadow-sm"
+                type="button"
+                [attr.aria-busy]="ctaLoading()"
+                (click)="onPrimaryCta()">
+                <span *ngIf="!ctaLoading()">Shop Now</span>
+                <span *ngIf="ctaLoading()">Loading…</span>
+              </button>
+  
+              <a class="btn btn-lg btn-outline-ligh shadow-sm " routerLink="/about" role="button">
+                Learn more
+              </a>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Right: Image -->
+        <div class="col-12 col-lg-6 text-center">
+            <img
+            alt="E-commerce illustration"
+            src="images/placeholder.png"
+            class="img-fluid hero-image rounded "
+          />
+        </div>
+      </div>
+  
+      <!-- Info cards under hero -->
+      <div class="row mt-5 gx-4 gy-3 justify-content-center">
+        <div
+          class="col-12 col-md-6 col-lg-4"
+          *ngFor="let f of features; let i = index"
+        >
+          <div class="card h-100 feature-card p-3 border-0">
+            <div class="d-flex align-items-start">
+              <div class="me-3 display-6 feature-icon" aria-hidden="true">{{ f.icon }}</div>
+              <div>
+                <h5 class="mb-1">{{ f.title }}</h5>
+                <p class="mb-0 small text-muted">{{ f.text }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+  
+
+
+  

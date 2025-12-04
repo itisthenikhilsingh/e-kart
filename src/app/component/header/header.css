@@ -1,0 +1,17 @@
+/* Logo scales to ~10% of viewport height */
+.brand-logo {
+    height: 15vh;          /* main rule: 10% of screen height */
+    max-height: 100px;      /* safety cap so it doesn’t get too large on big screens */
+    width: auto;           /* keep aspect ratio */
+    display: block;
+    object-fit: contain;
+  }
+  
+  /* Make it smaller on very small screens */
+  @media (max-width: 767.98px) {
+    .brand-logo {
+      height: 17vh;
+      max-height: 56px;
+    }
+  }
+  

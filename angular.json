@@ -25,6 +25,7 @@
               }
             ],
             "styles": [
+              "src/custom-theme.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
@@ -58,6 +59,10 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "port": 4201,
+            "host": "localhost"
+          },
           "configurations": {
             "production": {
               "buildTarget": "e-kart:build:production"
@@ -67,6 +72,7 @@
             }
           },
           "defaultConfiguration": "development"
+        
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"

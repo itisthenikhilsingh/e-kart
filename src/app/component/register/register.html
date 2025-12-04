@@ -1,18 +1,106 @@
-<p>register works!</p>
-<form [formGroup]="userForm" (ngSubmit)="submitForm()">
+<div class="container py-5 d-flex justify-content-center">
+  <div class="col-12 col-md-6 col-lg-5">
 
-    <label>Name:</label>
-    <input type="text" formControlName="name" />
-    <p *ngIf="userForm.controls['name'].invalid && userForm.controls['name'].touched">
-      Name is invalid!
-    </p>
-  
-    <label>Email:</label>
-    <input type="email" formControlName="email" />
-  
-    <button type="submit" [disabled]="userForm.invalid">Submit</button>
-  
-  </form>
-  
-  <p>{{ userForm.value | json }}</p>
-  
+    <div class="card shadow-sm p-4">
+      <h3 class="fw-bold mb-3 text-center">Create an Account</h3>
+      <p class="text-muted text-center mb-4">Join us and start shopping!</p>
+
+      <!-- note: (ngSubmit) automatically prevents default; we use (submit) here -->
+      <form (submit)="onRegisterUIOnly()">
+
+        <!-- Name -->
+        <div class="mb-3">
+          <label class="form-label fw-medium">Full Name</label>
+          <input 
+            type="text" 
+            class="form-control"
+            placeholder="Enter your full name"
+            required
+            [(ngModel)]="form.name"
+            name="name"
+          />
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label class="form-label fw-medium">Email Address</label>
+          <input 
+            type="email" 
+            class="form-control"
+            placeholder="example@email.com"
+            required
+            [(ngModel)]="form.email"
+            name="email"
+          />
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+          <label class="form-label fw-medium">Password</label>
+          <input 
+            type="password" 
+            class="form-control"
+            placeholder="Enter password"
+            required
+            [(ngModel)]="form.password"
+            name="password"
+          />
+
+          <!-- Password Validation Indicators -->
+          <ul class="small mt-2 list-unstyled mb-0">
+            <li [class.text-success]="hasLength()" class="text-muted">
+              • Minimum 8 characters
+            </li>
+            <li [class.text-success]="hasNumber()" class="text-muted">
+              • Contains a number
+            </li>
+            <li [class.text-success]="hasSpecial()" class="text-muted">
+              • Contains a special character
+            </li>
+          </ul>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="mb-3">
+          <label class="form-label fw-medium">Confirm Password</label>
+          <input 
+            type="password" 
+            class="form-control"
+            placeholder="Confirm password"
+            required
+            [(ngModel)]="form.confirmPassword"
+            name="confirmPassword"
+          />
+
+          <div
+            class="small mt-1"
+            [class.text-success]="isConfirmMatch()"
+            [class.text-danger]="form.confirmPassword && !isConfirmMatch()"
+          >
+            <span *ngIf="form.confirmPassword && !isConfirmMatch()">Passwords do not match</span>
+            <span *ngIf="isConfirmMatch()">Passwords match</span>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <button
+          type="submit"
+          class="btn btn-primary w-100 fw-semibold mt-2"
+          [disabled]="!isFormValid()"
+        >
+          Register
+        </button>
+
+      </form>
+
+      <!-- Sign In link -->
+      <div class="text-center mt-4">
+        <span class="text-muted">Already have an account?</span>
+        <p>
+          <a routerLink="/login" class="fw-semibold">Sign In</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
